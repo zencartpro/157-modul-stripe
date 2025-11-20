@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stripe.php 2025-11-12 13:31:14Z webchills $
+ * @version $Id: stripe.php 2025-11-20 15:31:14Z webchills $
  */
 class stripe extends base
 {
@@ -209,26 +209,16 @@ class stripe extends base
                 (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, last_modified, date_added, use_function, set_function, val_function)
              VALUES
                 ('Enable Stripe Secure Payment Module', 'MODULE_PAYMENT_STRIPE_STATUS', 'True', 'Do you want to accept Stripe Secure Payment?', 6, 1, NULL, now(), NULL, 'zen_cfg_select_option([\'True\', \'False\', \'Retired\'], ', NULL),
-
                 ('API Publishable Key:', 'MODULE_PAYMENT_STRIPE_PUBLISHABLE_KEY', '', 'Enter API Publishable Key provided by stripe', 6, 1, NULL, now(), NULL, NULL, NULL),
-
                 ('Sort order of display.', 'MODULE_PAYMENT_STRIPE_SORT_ORDER', '1', 'Sort order of display. Lowest is displayed first.', 6, 1, NULL, now(), NULL, NULL, NULL),
-
                 ('Payment Zone', 'MODULE_PAYMENT_STRIPE_ZONE', '0', 'If a zone is selected, only enable this payment method for that zone.', 6, 1, NULL, now(), 'zen_get_zone_class_title', 'zen_cfg_pull_down_zone_classes(', NULL),
-                
                 ('Set Order Status', 'MODULE_PAYMENT_STRIPE_STATUS_ID', '2', 'Set the status of orders made with this payment module to this value', 6, 1, NULL, now(), 'zen_get_order_status_name', 'zen_cfg_pull_down_order_statuses(', NULL),
-
                 ('API Secret Key:', 'MODULE_PAYMENT_STRIPE_SECRET_KEY', '', 'Enter API Secret Key provided by stripe', 6, 1, NULL, now(), 'zen_cfg_password_display', NULL, NULL),
-
                 ('Test Mode - API Publishable Test Key:', 'MODULE_PAYMENT_STRIPE_PUBLISHABLE_TEST_KEY', '', 'Enter API Publishable Test Key provided by stripe', 6, 1, NULL, now(), NULL, NULL, NULL),
-
                 ('Test Mode - API Secret Test Key:', 'MODULE_PAYMENT_STRIPE_SECRET_TEST_KEY', '', 'Enter API Secret Test Key provided by stripe', 6, 1, NULL, now(), 'zen_cfg_password_display', NULL, NULL),
-
                 ('Test Mode Stripe Secure Payment Module', 'MODULE_PAYMENT_STRIPE_TEST_MODE', 'True', 'Enter your Stripe API test publishable key and secret key.\r\nNote: Don\'t forget to set it to False after testing.', 6, 1, NULL, now(), NULL, 'zen_cfg_select_option([\'True\', \'False\'], ', NULL),
-  
                 ('Payment Succeeded Message:', 'TEXT_PAYMENT_STRIPE_PAYMENTSUCCEEDED', 'Zahlung erfolgreich. Bitte warten Sie ein paar Sekunden!', 'The message will be displayed after payment succeeded. If you do not want to display it, leave it blank.', 6, 1, NULL, now(), NULL, NULL , NULL),
-
-                ('Form Layout', 'MODULE_PAYMENT_STRIPE_LAYOUT', 'Tabs', 'Select stripe layout Tabs or Accordion.', 6, 1, NULL, now(), NULL, 'zen_cfg_select_option([\'Tabs\', \'Accordion\'], ', NULL)"
+                ('Form Layout', 'MODULE_PAYMENT_STRIPE_LAYOUT', 'Tabs', 'Select stripe layout Tabs or Accordion.<br>Note: This setting currently has no effect.', 6, 1, NULL, now(), NULL, 'zen_cfg_select_option([\'Tabs\', \'Accordion\'], ', NULL)"
         );
         
                 $db->Execute(
@@ -236,17 +226,17 @@ class stripe extends base
              "INSERT INTO " . TABLE_CONFIGURATION_LANGUAGE . " 
                 (configuration_title, configuration_key, configuration_description, configuration_language_id, last_modified, date_added)
               VALUES
-               ('Stripe Zahlungsmodul aktivieren?', 'MODULE_PAYMENT_STRIPE_STATUS', 'Wollen Sie Zahlungen via Stripe aktivieren?', 43, NOW(), NOW()),
-               ('API Öffentlicher Schlüssel für Livesystem', 'MODULE_PAYMENT_STRIPE_PUBLISHABLE_KEY', 'Tragen Sie hier Ihren Öffentlichen Schlüssel (Publishable Key) für das LIVESYSTEM ein', 43, NOW(), NOW()),
+               ('Stripe Zahlungsmodul aktivieren?', 'MODULE_PAYMENT_STRIPE_STATUS', 'Wollen Sie Kreditkartenzahlungen via Stripe aktivieren?', 43, NOW(), NOW()),
+               ('Livemodus - API Veröffentlichbarer Schlüssel für Livesystem', 'MODULE_PAYMENT_STRIPE_PUBLISHABLE_KEY', 'Tragen Sie hier Ihren Veröffentlichbaren Schlüssel (Publishable Key) für das LIVESYSTEM ein', 43, NOW(), NOW()),
                ('Sortierreihenfolge', 'MODULE_PAYMENT_STRIPE_SORT_ORDER', 'Anzeigereihenfolge für das Stripe Zahlungsmodul. Niedrigste Werte werden zuerst angezeigt.', 43, NOW(), NOW()),
                ('Zone', 'MODULE_PAYMENT_STRIPE_ZONE', 'Wenn Sie Stripe Zahlungen nur für eine bestimmte Zone anbieten wollen, stellen Sie hier die gewünschte Zone ein. Ansonsten auf keine lassen', 43, NOW(), NOW()),
                ('Bestellstatus', 'MODULE_PAYMENT_STRIPE_STATUS_ID', 'Welchen Bestellstatus sollen Bestellungen bekommen, die via Stripe bezahlt wurden?', 43, NOW(), NOW()),
-               ('API Geheimer Schlüssel für Livesystem', 'MODULE_PAYMENT_STRIPE_SECRET_KEY', 'Tragen Sie hier Ihren Geheimen Schlüssel (Secret Key) für das LIVESYSTEM ein.', 43, NOW(), NOW()),
-               ('Testmodus - API Öffenticher Schlüssel für Testsystem', 'MODULE_PAYMENT_STRIPE_PUBLISHABLE_TEST_KEY', 'Tragen Sie hier Ihren Öffentlichen Schlüssel (Publisheable Key) für das TESTSYSTEM ein.', 43, NOW(), NOW()),
-               ('Testmodus - API Geheimer Schlüssel für Testsystem', 'MODULE_PAYMENT_STRIPE_SECRET_TEST_KEY', 'Tragen Sie hier Ihren Geheimen Schlüssel (Secret Key) für das TESTSYSTEM ein.', 43, NOW(), NOW()),
+               ('Livemodus - API Geheimschlüssel für Livesystem', 'MODULE_PAYMENT_STRIPE_SECRET_KEY', 'Tragen Sie hier Ihren Geheimschlüssel (Secret Key) für das LIVESYSTEM ein.', 43, NOW(), NOW()),
+               ('Testmodus - API Veröffentlichbarer Schlüssel für Testsystem', 'MODULE_PAYMENT_STRIPE_PUBLISHABLE_TEST_KEY', 'Tragen Sie hier Ihren Veröffentlichbaren Schlüssel (Publisheable Key) für das TESTSYSTEM ein.', 43, NOW(), NOW()),
+               ('Testmodus - API Geheimschlüssel für Testsystem', 'MODULE_PAYMENT_STRIPE_SECRET_TEST_KEY', 'Tragen Sie hier Ihren Geheimschlüssel (Secret Key) für das TESTSYSTEM ein.', 43, NOW(), NOW()),
                ('Testmodus aktivieren?', 'MODULE_PAYMENT_STRIPE_TEST_MODE', 'Stellen Sie hier auf True, um das Modul im TESTMODUS zu testen.', 43, NOW(), NOW()),
-               ('Meldungstext für erfolgreiche Zahlung', 'TEXT_PAYMENT_STRIPE_PAYMENTSUCCEEDED', 'Nach einer erfolgreichern Zahlung wird der hier hinterlegte Text angezeigt. Leer lassen, um keinen Text anzuzeigen.<br>', 43, NOW(), NOW()),
-               ('Layout der Zahlungsseite', 'MODULE_PAYMENT_STRIPE_LAYOUT', 'Wählen Sie zwischen Tabs und Accordion<br>', 43, NOW(), NOW())
+               ('Meldungstext für erfolgreiche Zahlung', 'TEXT_PAYMENT_STRIPE_PAYMENTSUCCEEDED', 'Nach einer erfolgreichen Zahlung wird der hier hinterlegte Text angezeigt. Leer lassen, um keinen Text anzuzeigen.<br>', 43, NOW(), NOW()),
+               ('Layout der Zahlungsseite', 'MODULE_PAYMENT_STRIPE_LAYOUT', 'Wählen Sie zwischen Tabs und Accordion<br>Hinweis: Diese Einstellung hat derzeit keine Auswirkung.<br>', 43, NOW(), NOW())
      ");
         
     }
