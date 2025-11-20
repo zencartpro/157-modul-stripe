@@ -4,4 +4,6 @@ Stripe Kreditkartenzahlung für Zen Cart 1.5.7 deutsch
 Hinweis: Freigegebene getestete Versionen für den Einsatz in Livesystemen ausschließlich unter Releases herunterladen:
 * https://github.com/zencartpro/157-modul-stripe/releases
 
-Mit diesem Modul wird Zahlung mit Kreditkarte via Stripe im Shop integriert.
+Dieses Modul integriert Kreditkartenzahlung via Stripe in Ihren Zen Cart Shop.
+Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul unterstützt derzeit rein Kreditkarten.
+Das Modul kann im Testmodus getestet werden.
