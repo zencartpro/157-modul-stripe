@@ -1,0 +1,70 @@
+Stripe Kredikartenzahlung 3.0.0 für Zen Cart 1.5.7j deutsch
+
+Dieses Modul integriert Kreditkartenzahlung via Stripe in Ihren Zen Cart Shop.
+Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul unterstützt derzeit rein Kreditkarten.
+Das Modul kann im Testmodus getestet werden.
+
+Voraussetzungen:
+- freigeschalteter Account bei Stripe (www.stripe.com)
+- Zen Cart 1.5.7j deutsch
+
+
+VORBEREITUNGEN BEI STRIPE
+
+1)
+Sie benötigen je 2 Schlüssel für Livesystem und Testsystem
+Geben Sie in Ihrem Stripe Dashboard oben im Suchfeld Folgendes ein:
+API
+Clicken Sie auf das Suchergebnis Entwickler > API Schlüssel
+Unter Standard Schlüssel werden Ihnen Veröffentlichbarer Schlüssel und Geheimschlüssel angezeigt
+Kopieren Sie sich diese beiden Schlüssel in eine Textdatei
+Sollten Sie noch keine Keys angelegt haben, können Sie hier welche erstellen
+Die Keys für das Livesystem beginnen immer mit pk_live
+
+2)
+Für das Testsystem benötigen Sie ebenfalls 2 Schlüssel
+Klicken Sie oben links in Ihrem Stripe Dashboard auf Ihren Kontonamen
+Wählen Sie "Zu Sandbox wechseln" >>> Testmodus
+Geben Sie nun im Suchfeld oben wieder Folgendes ein:
+API
+Clicken Sie auf das Suchergebnis Entwickler > API Schlüssel
+Unter Standard Schlüssel werden Ihnen Veröffentlichbarer Schlüssel und Geheimschlüssel angezeigt
+Kopieren Sie sich diese beiden Schlüssel in eine Textdatei
+Sollten Sie noch keine Keys angelegt haben, können Sie hier welche erstellen
+Die Keys für das Testsystem beginnen immer mit pk_test
+
+
+
+INSTALLATION
+
+1)
+Im Ordner NEUE DATEIEN den Ordner includes/templates/DEINTEMPLATE auf den Namen Ihres im Shop aktiven Templates umbenennen.
+Dann den Inhalt des Ordners NEUE DATEIEN in der vorgegebenen Struktur in Ihr Shopverzeichnis hochladen, dabei werden keine bestehenden Dateien überschrieben
+
+2)
+Unter Module > Zahlungsarten das Stripe Modul installieren und konfigurieren, alle Einstellungsmöglichkeiten sind dort erklärt.
+
+
+ABLAUF IM FRONTEND
+
+Die Eingabe der Kreditkartendaten erfolgt nach der Auswahl der Zahlungsart Kreditkarte via Stripe im letzten Bestellschritt. Über dem Button Kaufen werden die entsprechenden Eingabefelder angezeigt.
+Wenn Sie das Modul im Testmodus testen, erscheint ein entsprechender Hinweis im Shop.
+
+Farben/Schriftgrößen für die Eingabefelder können Sie in folgendem Stylesheet auf Ihr Layout feinabstimmen:
+includes/templates/DEINTEMPLATE/css/stylesheet_stripe.css
+
+
+CREDITS/LIZENZ
+
+Dieses Modul ist eine Anpassung des Moduls Stripe Pay pament module von lat9
+Grundlage war das entsprechende Github Repository:
+https://github.com/lat9/stripe
+Lizenz: GPL-3.0
+
+
+CHANGELOG:
+
+Version 3.0.0
+20.11.2025
+Initial Release
+
