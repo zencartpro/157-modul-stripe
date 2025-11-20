@@ -56,7 +56,7 @@ includes/templates/DEINTEMPLATE/css/stylesheet_stripe.css
 
 CREDITS/LIZENZ
 
-Dieses Modul ist eine Anpassung des Moduls Stripe Pay pament module von lat9
+Dieses Modul ist eine Anpassung des Moduls Stripe Pay pament module von lat9 für die deutsche Zen Cart Version 1.5.7j
 Grundlage war das entsprechende Github Repository:
 https://github.com/lat9/stripe
 Lizenz: GPL-3.0
