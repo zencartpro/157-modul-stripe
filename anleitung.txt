@@ -53,6 +53,11 @@ Wenn Sie das Modul im Testmodus testen, erscheint ein entsprechender Hinweis im 
 Farben/Schriftgrößen für die Eingabefelder können Sie in folgendem Stylesheet auf Ihr Layout feinabstimmen:
 includes/templates/DEINTEMPLATE/css/stylesheet_stripe.css
 
+Um das Modul im Testmodus zu testen, verwenden Sie folgende Kreditkartennummer:
+4242 4242 4242 4242
+Ablaufdatum: irgendeins in der Zukunft
+CVV Code: irgendwas, z.B. 123
+
 
 CREDITS/LIZENZ
 
