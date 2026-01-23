@@ -7,9 +7,9 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: jscript_stripe_checkout_confirmation.php 2025-11-12 11:49:14Z webchills $
+ * @version $Id: jscript_stripe_checkout_confirmation.php 2026-01-23 17:49:14Z webchills $
  */
-if (defined('MODULE_PAYMENT_STRIPE_STATUS') && MODULE_PAYMENT_STRIPE_STATUS === 'True' && $stripe_select === 'True') {
+if (defined('MODULE_PAYMENT_STRIPE_STATUS') && (MODULE_PAYMENT_STRIPE_STATUS === 'True') && (isset($stripe_select)) && ($stripe_select === 'True')) {
     // -----
     // Gather the order data-related values needed by stripe_checkout.js.
     //
