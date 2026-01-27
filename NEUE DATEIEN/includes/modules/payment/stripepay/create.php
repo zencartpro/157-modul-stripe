@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create.php 2026-01-24 08:31:14Z webchills $
+ * @version $Id: create.php 2026-01-27 12:31:14Z webchills $
  */
 global $order, $db, $stripe_select;
 
@@ -134,8 +134,6 @@ if ($order->info['comments'] !== ''){
 
 $_SESSION['paymentIntent'] = $paymentIntent['id'];
 
-//echo $paymentIntent['id'];
-//------------
 ?>
 <script id="stripe-data">
    'use strict';

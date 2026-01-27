@@ -4,11 +4,11 @@
  * Zen Cart German Specific (zencartpro adaptations)
  * Copyright 2025 lat9
  * see: https://github.com/lat9/stripe/
- * @copyright Copyright 2003-2025 Zen Cart Development Team
+ * @copyright Copyright 2003-2026 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stripe.php 2025-11-20 15:31:14Z webchills $
+ * @version $Id: stripe.php 2026-01-27 15:31:14Z webchills $
  */
 class stripe extends base
 {
@@ -138,7 +138,7 @@ class stripe extends base
 
     public function selection()
     {
-        return ['id' => $this->code, 'module' => $this->title];
+        return ['id' => $this->code, 'module' => $this->title, 'fields' => array(array('title' => MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION_CHECKOUT_PAYMENT)) ];
     }
 
     public function pre_confirmation_check()
@@ -167,7 +167,7 @@ class stripe extends base
 
     function after_process()
     {
-        unset($_SESSION['order_add_comment'], $_SESSION['paymentIntent'], $_SESSION['stripe_payment_attempts']);
+        unset($_SESSION['order_add_comment'], $_SESSION['paymentIntent'], $_SESSION['stripe_payment_attempts'], $_SESSION['stripe_payment_method']);
 
         // -----
         // If an additional message is to be associated with a Stripe-paid order ...
