@@ -1,7 +1,15 @@
-Stripe Kredikartenzahlung 3.0.0 für Zen Cart 1.5.7j deutsch
+Stripe Checkout 3.1.0 für Zen Cart 1.5.7j deutsch
 
-Dieses Modul integriert Kreditkartenzahlung via Stripe in Ihren Zen Cart Shop.
-Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul unterstützt derzeit rein Kreditkarten.
+Dieses Modul integriert Checkout via Stripe in Ihren Zen Cart Shop.
+Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul wurde mit folgenden Stripe Zahlungsarten getestet:
+
+Kreditkarten
+Cartes Bancaires
+Amazon Pay
+Klarna
+Google Pay
+Apple Pay
+
 Das Modul kann im Testmodus getestet werden.
 
 Voraussetzungen:
@@ -33,30 +41,82 @@ Kopieren Sie sich diese beiden Schlüssel in eine Textdatei
 Sollten Sie noch keine Keys angelegt haben, können Sie hier welche erstellen
 Die Keys für das Testsystem beginnen immer mit pk_test
 
+3)
+Aktivieren und konfigurieren Sie in Ihrem Stripe Dashboard nun die Zahlungsarten, die Sie anbieten wollen.
+Dieses Modul enthält keine Webhook Funktionalität, daher ist es für asynchrone Zahlungsarten wie eps, Lastschrift, Multibanco NICHT geeignet.
+Für dieses Modul geeignet und getestet sind: Kreditkarten, Cartes Bancaires, Amazon Pay, Klarna, Google Pay, Apple Pay
+Sie können in Ihem Stripe Dashboard die aktiven Zahlungsarten auch auf bestimmte Länder einschränken, Kunden, die dann aus anderen Ländern im Shop surfen, werden solch eingeschränkte Zahlungsarteb dann nicht angeboten.
 
 
 INSTALLATION
 
 1)
 Im Ordner NEUE DATEIEN den Ordner includes/templates/DEINTEMPLATE auf den Namen Ihres im Shop aktiven Templates umbenennen.
-Dann den Inhalt des Ordners NEUE DATEIEN in der vorgegebenen Struktur in Ihr Shopverzeichnis hochladen, dabei werden keine bestehenden Dateien überschrieben
+Dann den Inhalt des Ordners NEUE DATEIEN in der vorgegebenen Struktur in Ihr Shopverzeichnis hochladen, dabei werden keine bestehenden Dateien überschrieben.
 
 2)
+Im Ordner GEAENDERTE DATEIEN finden Sie die einzige Datei, die von diesem Modul geändert werden muss:
+includes/modules/pages/checkout_cnmfirmation/header_php.php
+Vergleichen Sie diese Datei mit BeyondCompare oder WinMerge mit der in Ihrem Shop und ändern Sie die Datei im Shop entsprechend ab.
+
+Original (ca. Zeile 57):
+
+if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
+  if (!isset($_POST['conditions']) || ($_POST['conditions'] != '1')) {
+    $messageStack->add_session('checkout_payment', ERROR_CONDITIONS_NOT_ACCEPTED, 'error');
+  }
+}
+
+
+Ändern auf:
+
+// bof stripe
+if (DISPLAY_CONDITIONS_ON_CHECKOUT == 'true') {
+if (!isset($_POST['conditions']) || ($_POST['conditions'] != '1')) {		
+if (!empty($_SESSION['paymentIntent'])){ 
+//do nothing
+} else {
+$messageStack->add_session('checkout_payment', ERROR_CONDITIONS_NOT_ACCEPTED, 'error');
+}
+}
+}
+
+
+3)
 Unter Module > Zahlungsarten das Stripe Modul installieren und konfigurieren, alle Einstellungsmöglichkeiten sind dort erklärt.
+
 
 
 ABLAUF IM FRONTEND
 
-Die Eingabe der Kreditkartendaten erfolgt nach der Auswahl der Zahlungsart Kreditkarte via Stripe im letzten Bestellschritt. Über dem Button Kaufen werden die entsprechenden Eingabefelder angezeigt.
+Die Eingabe der Kreditkartendaten oder Auswahl anderer Stripe Zahlungsarten erfolgt nach der Auswahl der Zahlungsart Stripe Checkout im letzten Bestellschritt. 
+Über dem Button Kaufen werden die entsprechenden Eingabefelder angezeigt.
 Wenn Sie das Modul im Testmodus testen, erscheint ein entsprechender Hinweis im Shop.
 
 Farben/Schriftgrößen für die Eingabefelder können Sie in folgendem Stylesheet auf Ihr Layout feinabstimmen:
 includes/templates/DEINTEMPLATE/css/stylesheet_stripe.css
 
-Um das Modul im Testmodus zu testen, verwenden Sie folgende Kreditkartennummer:
+Um Kreditkarten im Testmodus zu testen, verwenden Sie folgende Kreditkartennummer:
 4242 4242 4242 4242
 Ablaufdatum: irgendeins in der Zukunft
 CVV Code: irgendwas, z.B. 123
+
+Bei der Auswahl der Zahlungsart Stripe Checkout erscheint folgender Infotext:
+Bezahlen Sie mit Kreditkarte, Amazon Pay, Klarna, Apple Pay oder Google Pay. Die Eingabe der Zahlungsdaten erfolgt im nächsten Schritt.
+
+Diesen Text können Sie anpassen in:
+includes/languages/german/modules/payment/stripe.php
+define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION_CHECKOUT_PAYMENT', 'Bezahlen Sie mit <b>Kreditkarte</b>, <b>Amazon Pay</b>, <b>Klarna</b>, <b>Apple Pay</b> oder <b>Google Pay</b>. Die Eingabe der Zahlungsdaten erfolgt im nächsten Schritt.');
+Falls Sie im Shop auch englisch aktiv haben entsprechend in:
+includes/languages/english/modules/payment/stripe.php
+
+WICHTIG: 
+Falls Sie den API-Schlüssel oder den Testmodusstatus dieses Zahlungsmoduls geändert haben, müssen Sie alle vorhandenen Datensätze in der Datenbanktabelle stripe löschen.
+Gehen Sie dazu in der Shopadministration auf Tools > SQL-Patches installieren.
+Geben Sie Folgendes in das Textfeld ein und klicken Sie dann auf die Schaltfläche Absenden:
+
+TRUNCATE stripe;
+
 
 
 CREDITS/LIZENZ
@@ -68,6 +128,11 @@ Lizenz: GPL-3.0
 
 
 CHANGELOG:
+
+Version 3.1.0
+28.01.2026
+Unterstützung für weitere Stripe Zahlungsarten hinzugefügt
+Stripe php-library auf 19.2.0 aktualisiert
 
 Version 3.0.0
 20.11.2025

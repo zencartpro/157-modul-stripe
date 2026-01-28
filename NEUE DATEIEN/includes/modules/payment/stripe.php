@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stripe.php 2026-01-27 15:31:14Z webchills $
+ * @version $Id: stripe.php 2026-01-28 13:31:14Z webchills $
  */
 class stripe extends base
 {
@@ -218,7 +218,7 @@ class stripe extends base
                 ('Test Mode - API Secret Test Key:', 'MODULE_PAYMENT_STRIPE_SECRET_TEST_KEY', '', 'Enter API Secret Test Key provided by stripe', 6, 1, NULL, now(), 'zen_cfg_password_display', NULL, NULL),
                 ('Test Mode Stripe Secure Payment Module', 'MODULE_PAYMENT_STRIPE_TEST_MODE', 'True', 'Enter your Stripe API test publishable key and secret key.\r\nNote: Don\'t forget to set it to False after testing.', 6, 1, NULL, now(), NULL, 'zen_cfg_select_option([\'True\', \'False\'], ', NULL),
                 ('Payment Succeeded Message:', 'TEXT_PAYMENT_STRIPE_PAYMENTSUCCEEDED', 'Zahlung erfolgreich. Bitte warten Sie ein paar Sekunden!', 'The message will be displayed after payment succeeded. If you do not want to display it, leave it blank.', 6, 1, NULL, now(), NULL, NULL , NULL),
-                ('Form Layout', 'MODULE_PAYMENT_STRIPE_LAYOUT', 'Tabs', 'Select stripe layout Tabs or Accordion.<br>Note: This setting currently has no effect.', 6, 1, NULL, now(), NULL, 'zen_cfg_select_option([\'Tabs\', \'Accordion\'], ', NULL)"
+                ('Form Layout', 'MODULE_PAYMENT_STRIPE_LAYOUT', 'Tabs', 'Select stripe layout Tabs or Accordion.<br>', 6, 1, NULL, now(), NULL, 'zen_cfg_select_option([\'Tabs\', \'Accordion\'], ', NULL)"
         );
         
                 $db->Execute(
@@ -236,7 +236,7 @@ class stripe extends base
                ('Testmodus - API Geheimschlüssel für Testsystem', 'MODULE_PAYMENT_STRIPE_SECRET_TEST_KEY', 'Tragen Sie hier Ihren Geheimschlüssel (Secret Key) für das TESTSYSTEM ein.', 43, NOW(), NOW()),
                ('Testmodus aktivieren?', 'MODULE_PAYMENT_STRIPE_TEST_MODE', 'Stellen Sie hier auf True, um das Modul im TESTMODUS zu testen.', 43, NOW(), NOW()),
                ('Meldungstext für erfolgreiche Zahlung', 'TEXT_PAYMENT_STRIPE_PAYMENTSUCCEEDED', 'Nach einer erfolgreichen Zahlung wird der hier hinterlegte Text angezeigt. Leer lassen, um keinen Text anzuzeigen.<br>', 43, NOW(), NOW()),
-               ('Layout der Zahlungsseite', 'MODULE_PAYMENT_STRIPE_LAYOUT', 'Wählen Sie zwischen Tabs und Accordion<br>Hinweis: Diese Einstellung hat derzeit keine Auswirkung.<br>', 43, NOW(), NOW())
+               ('Layout der Zahlungsseite', 'MODULE_PAYMENT_STRIPE_LAYOUT', 'Wählen Sie zwischen Tabs und Accordion<br>', 43, NOW(), NOW())
      ");
         
     }
