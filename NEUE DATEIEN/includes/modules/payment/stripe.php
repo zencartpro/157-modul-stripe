@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: stripe.php 2026-01-28 13:31:14Z webchills $
+ * @version $Id: stripe.php 2026-01-30 08:31:14Z webchills $
  */
 class stripe extends base
 {
@@ -167,7 +167,7 @@ class stripe extends base
 
     function after_process()
     {
-        unset($_SESSION['order_add_comment'], $_SESSION['paymentIntent'], $_SESSION['stripe_payment_attempts'], $_SESSION['stripe_payment_method']);
+        unset($_SESSION['order_add_comment'], $_SESSION['paymentIntent'], $_SESSION['stripe_payment_attempts']);
 
         // -----
         // If an additional message is to be associated with a Stripe-paid order ...
