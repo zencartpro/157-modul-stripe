@@ -1,4 +1,4 @@
-Stripe Checkout 3.1.0 für Zen Cart 1.5.7j deutsch
+Stripe Checkout 3.1.1 für Zen Cart 1.5.7j deutsch
 
 Dieses Modul integriert Checkout via Stripe in Ihren Zen Cart Shop.
 Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul wurde mit folgenden Stripe Zahlungsarten getestet:
@@ -56,7 +56,7 @@ Dann den Inhalt des Ordners NEUE DATEIEN in der vorgegebenen Struktur in Ihr Sho
 
 2)
 Im Ordner GEAENDERTE DATEIEN finden Sie die einzige Datei, die von diesem Modul geändert werden muss:
-includes/modules/pages/checkout_cnmfirmation/header_php.php
+includes/modules/pages/checkout_confirmation/header_php.php
 Vergleichen Sie diese Datei mit BeyondCompare oder WinMerge mit der in Ihrem Shop und ändern Sie die Datei im Shop entsprechend ab.
 
 Original (ca. Zeile 57):
@@ -110,6 +110,35 @@ define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION_CHECKOUT_PAYMENT', 'Bezahlen Sie 
 Falls Sie im Shop auch englisch aktiv haben entsprechend in:
 includes/languages/english/modules/payment/stripe.php
 
+Wenn Sie Ihren Shop neben deutsch auch in englisch betreiben, bekommen Kunden, die auf englisch bestellen auch die Transaktionsbestätigung von Stripe auf englisch.
+Kunden, die auf deutsch bestellen, bekommen das Mail von Stripe auf deutsch.
+Sollten Sie im Shop noch weitere Sprachen aktiv haben, dann ergänzen Sie die Sprachen in:
+
+includes/modules/payment/stripepay/create.php
+ca. Zeile 52
+
+Original werden nur deutsch und englisch unterstützt:
+if ($_SESSION['language']=='english') {
+$locales = 'en';
+} else {
+$locales = 'de';
+}
+
+Wenn Sie z.B. auch französisch und italieneisch aktiv haben, dann ändern Sie den Abschnitt entsprechend ab auf z.B.
+
+if ($_SESSION['language']=='english') {
+$locales = 'en';
+}
+if ($_SESSION['language']=='french') {
+$locales = 'fr';
+}
+if ($_SESSION['language']=='italian') {
+$locales = 'it';
+}
+if ($_SESSION['language']=='german') {
+$locales = 'de';
+}
+
 WICHTIG: 
 Falls Sie den API-Schlüssel oder den Testmodusstatus dieses Zahlungsmoduls geändert haben, müssen Sie alle vorhandenen Datensätze in der Datenbanktabelle stripe löschen.
 Gehen Sie dazu in der Shopadministration auf Tools > SQL-Patches installieren.
@@ -128,6 +157,11 @@ Lizenz: GPL-3.0
 
 
 CHANGELOG:
+
+Version 3.1.1
+30.01.2026
+Parameter preferred_locales wird je nach gewählter Sprache übergeben
+Unterstützung für multilinguale Stripe Transaktionsbestätigungsemails
 
 Version 3.1.0
 28.01.2026
