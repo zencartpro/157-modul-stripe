@@ -8,7 +8,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: create.php 2026-01-27 12:31:14Z webchills $
+ * @version $Id: create.php 2026-01-30 13:59:14Z webchills $
  */
 global $order, $db, $stripe_select;
 
@@ -49,6 +49,11 @@ $amount_total = round($order_value * $order->info['currency_value'], $decimal_pl
 $fullname = $order->billing['firstname'] . ' ' . $order->billing['lastname'];
 $email = $order->customer['email_address'];
 $user_id = $_SESSION['customer_id'];
+if ($_SESSION['language']=='english') {
+$locales = 'en';
+} else {
+$locales = 'de';
+}
 $registered_customer = false;
 $stripe_customer = $db->Execute("SELECT Stripe_Customers_id FROM " . TABLE_STRIPE . " WHERE customers_id = " . (int)$_SESSION['customer_id'] . " LIMIT 1");
 if (!$stripe_customer->EOF) {
@@ -65,6 +70,7 @@ try {
         $customer = \Stripe\Customer::create([
             'email' => $email,
             'name' => $fullname,
+            'preferred_locales' => [$locales],
         ]);
 
         global $stripeCustomerID;
