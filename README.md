@@ -11,7 +11,6 @@ Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul wurde m
 * Kreditkarten
 * Cartes Bancaires
 * Amazon Pay
-* Klarna
 * Google Pay
 * Apple Pay
 
