@@ -1,4 +1,4 @@
-Stripe Checkout 3.1.1 für Zen Cart 1.5.7j deutsch
+Stripe Checkout 3.2.0 für Zen Cart 1.5.7j deutsch
 
 Dieses Modul integriert Checkout via Stripe in Ihren Zen Cart Shop.
 Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul wurde mit folgenden Stripe Zahlungsarten getestet:
@@ -47,6 +47,14 @@ Dieses Modul enthält keine Webhook Funktionalität, daher ist es für asynchron
 Für dieses Modul geeignet und getestet sind: Kreditkarten, Cartes Bancaires, Amazon Pay, Klarna, Google Pay, Apple Pay
 Sie können in Ihem Stripe Dashboard die aktiven Zahlungsarten auch auf bestimmte Länder einschränken, Kunden, die dann aus anderen Ländern im Shop surfen, werden solch eingeschränkte Zahlungsarteb dann nicht angeboten.
 
+4)
+Für andere Zahlungsarten als Kreditkarte ist es zwingend erforderlich, dass Sie in Ihrem Stripe Dashboard unter Einstellungen > Zahlungen > Zahlungsmethoden Domains die Domain Ihres Shops eintragen.
+Fügen Sie die Domain unbedingt einmal mit und einmal ohne www hinzu.
+Läuft Ihr Shop also unter www.meinshop.de, dann fügen Sie folgende Domains hinzu:
+meinshop.de
+www.meinshop.de
+Nur damit ist sicher gestellt, dass Apple Pay korrekt angezeigt wird.
+
 
 INSTALLATION
 
@@ -91,6 +99,7 @@ ABLAUF IM FRONTEND
 
 Die Eingabe der Kreditkartendaten oder Auswahl anderer Stripe Zahlungsarten erfolgt nach der Auswahl der Zahlungsart Stripe Checkout im letzten Bestellschritt. 
 Über dem Button Kaufen werden die entsprechenden Eingabefelder angezeigt.
+Der normale Kaufen Button wird deaktiviert und durch einen Stripe Kaufen Button ersetzt.
 Wenn Sie das Modul im Testmodus testen, erscheint ein entsprechender Hinweis im Shop.
 
 Farben/Schriftgrößen für die Eingabefelder können Sie in folgendem Stylesheet auf Ihr Layout feinabstimmen:
@@ -124,7 +133,7 @@ $locales = 'en';
 $locales = 'de';
 }
 
-Wenn Sie z.B. auch französisch und italieneisch aktiv haben, dann ändern Sie den Abschnitt entsprechend ab auf z.B.
+Wenn Sie z.B. auch französisch und italienisch aktiv haben, dann ändern Sie den Abschnitt entsprechend ab auf z.B.
 
 if ($_SESSION['language']=='english') {
 $locales = 'en';
@@ -138,6 +147,10 @@ $locales = 'it';
 if ($_SESSION['language']=='german') {
 $locales = 'de';
 }
+
+Hinweis für Google Pay und Apple Pay
+Google Pay wird nur angezeigt, wenn die Besucher als Browser Chrome verwenden.
+Apple Pay wird nur angezeigt, wenn die Besucher ein iOS Gerät mit Safari als Browser verwenden und im Wallet des Geräts mindestens eine gültige Kreditkarte/Zahlungsart hinterlegt ist.
 
 WICHTIG: 
 Falls Sie den API-Schlüssel oder den Testmodusstatus dieses Zahlungsmoduls geändert haben, müssen Sie alle vorhandenen Datensätze in der Datenbanktabelle stripe löschen.
@@ -158,10 +171,12 @@ Lizenz: GPL-3.0
 
 CHANGELOG:
 
-Version 3.1.1
-30.01.2026
+Version 3.2.0
+31.01.2026
 Parameter preferred_locales wird je nach gewählter Sprache übergeben
 Unterstützung für multilinguale Stripe Transaktionsbestätigungsemails
+Anleitung mit Hinweisen zu Apple Pay aktualisiert
+Nicht verwendete Funktionalitäten entfernt
 
 Version 3.1.0
 28.01.2026
