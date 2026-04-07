@@ -1,7 +1,7 @@
 <?php
 define('MODULE_PAYMENT_STRIPE_TEXT_TITLE', 'Stripe Checkout');
-define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION', 'Stripe Checkout: Kreditkarte und andere Zahlungsarten');
-define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION_CHECKOUT_PAYMENT', 'Bezahlen Sie mit <b>Kreditkarte</b>, <b>Amazon Pay</b>, <b>Klarna</b>, <b>Apple Pay</b> oder <b>Google Pay</b>. Die Eingabe der Zahlungsdaten erfolgt im nächsten Schritt.');
+define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION', 'Stripe Checkout: Kreditkarte oder Debitkarte');
+define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION_CHECKOUT_PAYMENT', 'Bezahlen Sie mit <b>Kreditkarte</b> oder <b>Debitkarte</b>. Die Eingabe der Zahlungsdaten erfolgt im nächsten Schritt.');
 define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION_CHECKOUT_HEADER', 'Stripe Checkout: Wählen Sie Ihre gewünschte Zahlungsart:');
 define('MODULE_PAYMENT_STRIPE_TEXT_NOTICES_TO_CUSTOMER', '');
 define('TEXT_PAYMENT_STRIPE_SUCCESS','Zahlung erfolgreich abgeschlossen! Bitte warten Sie ein paar Sekunden.');

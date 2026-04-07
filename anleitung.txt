@@ -1,20 +1,13 @@
-Stripe Checkout 3.2.0 für Zen Cart 1.5.7j deutsch
+Stripe Kreditkarten Checkout 3.2.1 für Zen Cart 1.5.7j deutsch
 
-Dieses Modul integriert Checkout via Stripe in Ihren Zen Cart Shop.
-Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul wurde mit folgenden Stripe Zahlungsarten getestet:
-
-Kreditkarten
-Cartes Bancaires
-Amazon Pay
-Klarna
-Google Pay
-Apple Pay
+Dieses Modul integriert Checkout mit Kreditkarte via Stripe in Ihren Zen Cart Shop.
+Stripe bietet neben Kreditkarten auch andere Zahlungsarten, dieses Modul ist nur für Kreditkarten und Cartes Bancaires geeignet.
 
 Das Modul kann im Testmodus getestet werden.
 
 Voraussetzungen:
 - freigeschalteter Account bei Stripe (www.stripe.com)
-- Zen Cart 1.5.7j deutsch
+- Zen Cart 1.5.7 j oder 1.5.7k deutsch
 
 
 VORBEREITUNGEN BEI STRIPE
@@ -43,17 +36,18 @@ Die Keys für das Testsystem beginnen immer mit pk_test
 
 3)
 Aktivieren und konfigurieren Sie in Ihrem Stripe Dashboard nun die Zahlungsarten, die Sie anbieten wollen.
-Dieses Modul enthält keine Webhook Funktionalität, daher ist es für asynchrone Zahlungsarten wie eps, Lastschrift, Multibanco NICHT geeignet.
-Für dieses Modul geeignet und getestet sind: Kreditkarten, Cartes Bancaires, Amazon Pay, Klarna, Google Pay, Apple Pay
-Sie können in Ihem Stripe Dashboard die aktiven Zahlungsarten auch auf bestimmte Länder einschränken, Kunden, die dann aus anderen Ländern im Shop surfen, werden solch eingeschränkte Zahlungsarteb dann nicht angeboten.
+Dieses Modul enthält keinerlei Webhook Funktionalität, daher ist es für Zahlungsarten wie Amazon Pay, Klarna, Google Pay, Apple Pay, eps, Lastschrift, Multibanco NICHT geeignet.
+Für dieses Modul geeignet und getestet sind: Kreditkarten und Cartes Bancaires.
+Aktivieren Sie daher nur Kreditkarten und Cartes Bancaires und deaktivieren Sie alle anderen dort angebotenen Zahlungsarten.
+Sie können in Ihrem Stripe Dashboard die aktiven Zahlungsarten auch auf bestimmte Länder einschränken, Kunden, die dann aus anderen Ländern im Shop surfen, werden solch eingeschränkte Zahlungsarten dann nicht angeboten.
 
 4)
-Für andere Zahlungsarten als Kreditkarte ist es zwingend erforderlich, dass Sie in Ihrem Stripe Dashboard unter Einstellungen > Zahlungen > Zahlungsmethoden Domains die Domain Ihres Shops eintragen.
+Tragen Sie in Ihrem Stripe Dashboard unter Einstellungen > Zahlungen > Zahlungsmethoden Domains die Domain Ihres Shops ein.
 Fügen Sie die Domain unbedingt einmal mit und einmal ohne www hinzu.
 Läuft Ihr Shop also unter www.meinshop.de, dann fügen Sie folgende Domains hinzu:
 meinshop.de
 www.meinshop.de
-Nur damit ist sicher gestellt, dass Apple Pay korrekt angezeigt wird.
+
 
 
 INSTALLATION
@@ -111,11 +105,11 @@ Ablaufdatum: irgendeins in der Zukunft
 CVV Code: irgendwas, z.B. 123
 
 Bei der Auswahl der Zahlungsart Stripe Checkout erscheint folgender Infotext:
-Bezahlen Sie mit Kreditkarte, Amazon Pay, Klarna, Apple Pay oder Google Pay. Die Eingabe der Zahlungsdaten erfolgt im nächsten Schritt.
+Bezahlen Sie mit Kreditkarte oder Debitkarte. Die Eingabe der Zahlungsdaten erfolgt im nächsten Schritt.
 
 Diesen Text können Sie anpassen in:
 includes/languages/german/modules/payment/stripe.php
-define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION_CHECKOUT_PAYMENT', 'Bezahlen Sie mit <b>Kreditkarte</b>, <b>Amazon Pay</b>, <b>Klarna</b>, <b>Apple Pay</b> oder <b>Google Pay</b>. Die Eingabe der Zahlungsdaten erfolgt im nächsten Schritt.');
+define('MODULE_PAYMENT_STRIPE_TEXT_DESCRIPTION_CHECKOUT_PAYMENT', 'Bezahlen Sie mit <b>Kreditkarte</b> oder <b>Debitkarte</b>. Die Eingabe der Zahlungsdaten erfolgt im nächsten Schritt.');
 Falls Sie im Shop auch englisch aktiv haben entsprechend in:
 includes/languages/english/modules/payment/stripe.php
 
@@ -148,9 +142,6 @@ if ($_SESSION['language']=='german') {
 $locales = 'de';
 }
 
-Hinweis für Google Pay und Apple Pay
-Google Pay wird nur angezeigt, wenn die Besucher als Browser Chrome verwenden.
-Apple Pay wird nur angezeigt, wenn die Besucher ein iOS Gerät mit Safari als Browser verwenden und im Wallet des Geräts mindestens eine gültige Kreditkarte/Zahlungsart hinterlegt ist.
 
 WICHTIG: 
 Falls Sie den API-Schlüssel oder den Testmodusstatus dieses Zahlungsmoduls geändert haben, müssen Sie alle vorhandenen Datensätze in der Datenbanktabelle stripe löschen.
@@ -163,7 +154,7 @@ TRUNCATE stripe;
 
 CREDITS/LIZENZ
 
-Dieses Modul ist eine Anpassung des Moduls Stripe Pay pament module von lat9 für die deutsche Zen Cart Version 1.5.7j
+Dieses Modul ist eine Anpassung des Moduls Stripe Pay pament module von lat9 für die deutsche Zen Cart Version 1.5.7j/1.5.7k
 Grundlage war das entsprechende Github Repository:
 https://github.com/lat9/stripe
 Lizenz: GPL-3.0
@@ -171,16 +162,19 @@ Lizenz: GPL-3.0
 
 CHANGELOG:
 
+Version 3.2.1
+07.04.2026
+Unnötige Dateien entfernt
+Anleitung aktualisiert
+
 Version 3.2.0
 31.01.2026
 Parameter preferred_locales wird je nach gewählter Sprache übergeben
 Unterstützung für multilinguale Stripe Transaktionsbestätigungsemails
-Anleitung mit Hinweisen zu Apple Pay aktualisiert
 Nicht verwendete Funktionalitäten entfernt
 
 Version 3.1.0
 28.01.2026
-Unterstützung für weitere Stripe Zahlungsarten hinzugefügt
 Stripe php-library auf 19.2.0 aktualisiert
 
 Version 3.0.0
